@@ -3,7 +3,9 @@ var tableDataFood = $('#tableDataFood');
 var elementNicePayment = $('#elementNicePayment');
 var elementMookPayment = $('#elementMookPayment');
 var elementpayment = $('#elementpayment');
-var elementbalance = $('#elementbalance');
+var elementfood = $('#elementfood');
+var elementwares = $('#elementwares');
+var elementanother = $('#elementanother');
 
 // when website on loading will query database at firebase
 window.onload = function() {
@@ -67,7 +69,7 @@ function showChart(){
 
 function getDataBuget(){
   // On Buget
-  var dbFoodRef = firebase.database().ref("Buget").limitToLast(10);
+  var dbFoodRef = firebase.database().ref("Buget").orderByChild('date').limitToLast(10);
 
   dbFoodRef.once('value').then(function(dataSnap){
     // On Buget -> (key)
@@ -117,16 +119,20 @@ function getDataInfomation() {
     var MookPayment = allValue.MookPayment;
     var NicePayment = allValue.NicePayment;
     var payment = allValue.payment;
-    var balance = allValue.balance;
+    var food = allValue.food;
+    var wares = allValue.wares;
+    var another = allValue.another;
 
     // log to see what happen when website on loading
-    console.log(NicePayment, MookPayment, payment);
+    console.log(NicePayment, MookPayment, payment, food, wares, another);
 
     // Push data to elements
     elementNicePayment.append(NicePayment);
     elementMookPayment.append(MookPayment);
     elementpayment.append(payment);
-    elementbalance.append(balance);
+    elementfood.append(food);
+    elementwares.append(wares);
+    elementanother.append(another);
 
   });
 }
@@ -137,13 +143,16 @@ function handleSave(){
   elementNicePayment.empty();
   elementMookPayment.empty();
   elementpayment.empty();
-  elementbalance.empty();
+  elementfood.empty();
+  elementwares.empty();
+  elementanother.empty();
 
   // Get all elements
   var date = document.getElementById('date');
   var name = document.getElementById('name');
   var price = document.getElementById('price');
   var whose = document.getElementById('whose');
+  var type = document.getElementById('type');
   var orderId = 0;
 
   // On Infomation
@@ -168,9 +177,8 @@ function handleSave(){
     // Set lastId in infomation
     setLastId(orderId);
     setPayment(parseInt(price.value));
-    setBalance(parseInt(price.value));
 
-    // Change value whose to string
+    // Chack who payment
     if(whose.value == '1') {
       whose = '@nice';
       setNicePayment(parseInt(price.value));
@@ -181,6 +189,22 @@ function handleSave(){
     }
     else {
       alert("select whose payment");
+      return;
+    }
+
+    // Chack type of payment
+    if(type.value == '1') {
+      setFood(parseInt(price.value));
+    }
+    else if (type.value == '2') {
+      setWares(parseInt(price.value));
+    }
+    else if (type.value == '3') {
+      setAnother(parseInt(price.value));
+    }
+    else {
+      alert("select type");
+      return;
     }
 
     getDataInfomation();
@@ -235,24 +259,6 @@ function setPayment(price){
   });
 }
 
-function setBalance(price){
-  // On Infomation
-  var dbInfodRef = firebase.database().ref("Infomation");
-
-  dbInfodRef.once('value').then(function(dataChildSnap){
-    // On Infomation --> Child
-
-    // Get current balance
-    var balance = dataChildSnap.val().balance;
-
-    // Update balance
-    dbInfodRef.update({
-      balance: balance - price,
-    })
-
-  });
-}
-
 function setNicePayment(price){
   // On Infomation
   var dbInfodRef = firebase.database().ref("Infomation");
@@ -284,6 +290,60 @@ function setMookPayment(price){
     // Update MookPayment
     dbInfodRef.update({
       MookPayment: MookPayment + price,
+    })
+
+  });
+}
+
+function setFood(price){
+  // On Infomation
+  var dbInfodRef = firebase.database().ref("Infomation");
+
+  dbInfodRef.once('value').then(function(dataChildSnap){
+    // On Infomation --> Child
+
+    // Get current food
+    var food = dataChildSnap.val().food;
+
+    // Update food
+    dbInfodRef.update({
+      food: food + price,
+    })
+
+  });
+}
+
+function setWares(price){
+  // On Infomation
+  var dbInfodRef = firebase.database().ref("Infomation");
+
+  dbInfodRef.once('value').then(function(dataChildSnap){
+    // On Infomation --> Child
+
+    // Get current wares
+    var wares = dataChildSnap.val().wares;
+
+    // Update food
+    dbInfodRef.update({
+      wares: wares + price,
+    })
+
+  });
+}
+
+function setAnother(price){
+  // On Infomation
+  var dbInfodRef = firebase.database().ref("Infomation");
+
+  dbInfodRef.once('value').then(function(dataChildSnap){
+    // On Infomation --> Child
+
+    // Get current another
+    var another = dataChildSnap.val().another;
+
+    // Update food
+    dbInfodRef.update({
+      another: another + price,
     })
 
   });
