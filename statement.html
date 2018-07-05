@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Google fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin' rel='stylesheet' type='text/css'>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="./assets/plugin/bootstrap-4/css/bootstrap.min.css">
+
+	<!-- FontAwesome CSS -->
+	<link rel="stylesheet" href="./assets/plugin/fonts-awesome-5/css/all.css">
+
+	<!-- My Style CSS -->
+
+	<title>BUGET2DAY</title>
+</head>
+
+<body class="bg-light">
+  <!-- navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand text-uppercase" href="#">budget<span class="text-danger">2</span>Day</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="index.html">Dashboard <span class="sr-only">(current)</span></a>
+					<a class="nav-item nav-link active" href="statement.html">Statement</a>
+      </div>
+    </div>
+  </nav>
+
+	<div class="container">
+		<div class="d-flex align-items-center justify-content-between p-3 my-3 text-white-50 bg-dark rounded box-shadow">
+      <img class="mr-3 rounded" src="https://scontent.fbkk5-8.fna.fbcdn.net/v/t31.0-8/29060220_1762161747178929_6797966305692918382_o.jpg?_nc_cat=0&oh=b710a24f85355a95754cb9c9529201b6&oe=5BA32018" alt="" width="48" height="48">
+      <div class="lh-100 w-75">
+        <h6 class="mb-0 text-white lh-100">Wanchalerm Suksawat</h6>
+        <small>@nice</small>
+      </div>
+			<div class="lh-100">
+				<a class="text-white" style="font-size: 1.75rem;" data-toggle="collapse" href="#tableBuggetNice" role="button" aria-expanded="false" aria-controls="tableBuggetNice">
+			    <i class="fas fa-info-circle"></i>
+			  </a>
+			</div>
+    </div>
+
+		<!-- toggel data -->
+		<div class="collapse my-3" id="tableBuggetNice">
+
+			<!-- table -->
+			<div class="p-3 bg-white rounded box-shadow">
+				<table class="table table-striped table-sm mb-0 mt-2">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+							<th scope="col">Date</th>
+				      <th scope="col">Name</th>
+				      <th scope="col">Price</th>
+				      <th scope="col">Whose</th>
+				    </tr>
+				  </thead>
+				  <tbody id="tableDateBugetNice">
+				  	<!-- data -->
+
+				  </tbody>
+				</table>
+			</div>
+
+			<div class="my-3 p-3 bg-white rounded box-shadow">
+				<h6 class="border-bottom border-gray pb-2 mb-0">Balance</h6>
+				<div class="media text-muted pt-3">
+					<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+						<strong class="d-block text-gray-dark">Food: <span id="elementtotalFoodNice" class="text-danger"></span>  ฿</strong>
+						<span id="elementlistFoodNice"></span>
+					</p>
+				</div>
+				<div class="media text-muted pt-3">
+					<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+						<strong class="d-block text-gray-dark">Wares: <span id="elementtotalWaresNice" class="text-danger"></span>  ฿</strong>
+						<span id="elementlistWaresNice"></span>
+					</p>
+				</div>
+				<div class="media text-muted pt-3">
+					<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+						<strong class="d-block text-gray-dark">Another: <span id="elementtotalAnotherNice" class="text-danger"></span>  ฿</strong>
+						<span id="elementlistAnotherNice"></span>
+					</p>
+				</div>
+				<small class="d-block text-right mt-3">
+					<a>Total: <span id="elementtotalNice" class="text-danger"></span> ฿</a>
+				</small>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container">
+		<div class="d-flex align-items-center justify-content-between p-3 my-3 text-white-50 bg-dark rounded box-shadow">
+      <img class="mr-3 rounded" src="https://scontent.fbkk5-8.fna.fbcdn.net/v/t31.0-8/16836020_1431644666847651_267826071208855495_o.jpg?_nc_cat=0&oh=2c0f76715a3f6e908181532fd7b1e7ab&oe=5BD6A377" alt="" width="48" height="48">
+      <div class="lh-100 w-75">
+        <h6 class="mb-0 text-white lh-100">Chanakran Maimark</h6>
+        <small>@mook</small>
+      </div>
+			<div class="lh-100">
+				<a class="text-white" style="font-size: 1.75rem;" data-toggle="collapse" href="#tableBuggetMook" role="button" aria-expanded="false" aria-controls="tableBuggetMook">
+			    <i class="fas fa-info-circle"></i>
+			  </a>
+			</div>
+    </div>
+
+		<!-- toggel data -->
+		<div class="collapse my-3" id="tableBuggetMook">
+
+			<!-- table -->
+			<div class="p-3 bg-white rounded box-shadow">
+				<table class="table table-striped table-sm mb-0 mt-2">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+							<th scope="col">Date</th>
+				      <th scope="col">Name</th>
+				      <th scope="col">Price</th>
+				      <th scope="col">Whose</th>
+				    </tr>
+				  </thead>
+				  <tbody id="tableDateBugetMook">
+				  	<!-- data -->
+
+				  </tbody>
+				</table>
+			</div>
+
+			<div class="my-3 p-3 bg-white rounded box-shadow">
+				<h6 class="border-bottom border-gray pb-2 mb-0">Balance</h6>
+				<div class="media text-muted pt-3">
+					<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+						<strong class="d-block text-gray-dark">Food: <span id="elementtotalFoodMook" class="text-danger"></span>  ฿</strong>
+						<span id="elementlistFoodMook"></span>
+					</p>
+				</div>
+				<div class="media text-muted pt-3">
+					<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+						<strong class="d-block text-gray-dark">Wares: <span id="elementtotalWaresMook" class="text-danger"></span>  ฿</strong>
+						<span id="elementlistWaresMook"></span>
+					</p>
+				</div>
+				<div class="media text-muted pt-3">
+					<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+						<strong class="d-block text-gray-dark">Another: <span id="elementtotalAnotherMook" class="text-danger"></span>  ฿</strong>
+						<span id="elementlistAnotherMook"></span>
+					</p>
+				</div>
+				<small class="d-block text-right mt-3">
+					<a>Total: <span id="elementtotalMook" class="text-danger"></span> ฿</a>
+				</small>
+			</div>
+		</div>
+
+	</div>
+
+  <!-- footer  -->
+  <footer class="bg-white">
+    <div class="container">
+      <div class="pt-4">
+        <div class="row">
+          <div class="col-12 col-md">
+            <h5 class="mb-0">Budget<span class="text-danger">2</span>day</h5>
+            <small class="d-block mb-3 text-muted">© 2017-2018</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="howto.html">How2</a></li>
+              <li><a class="text-muted" href="add.html">Add</a></li>
+              <li><a class="text-muted" href="salary.html">Salary</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Contact</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted">facebook : wanchalerm suksawat</a></li>
+              <li><a class="text-muted">gmail : tickstudiu@gmail.com</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <p class="text-muted">We created only for us.If anyone wants to use it, you can contact us via facebook or gmail.</p>
+          </div>
+        </div>
+      </div>
+      <div class="inner text-center pb-4">
+        <p class="small m-0">Cover template for <a class="text-danger" href="https://getbootstrap.com/">facebook</a>, by <a class="text-danger" href="https://twitter.com/mdo">@mdo</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS, My JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="./assets/plugin/bootstrap-4/js/bootstrap.min.js"></script>
+	<script src="./assets/js/javascript.js"></script>
+
+	<!-- Firebase connection and script -->
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDomip2DsnaDu6XNvX5PYvh1g0A-7ZWng4",
+	    authDomain: "buget2day.firebaseapp.com",
+	    databaseURL: "https://buget2day.firebaseio.com",
+	    projectId: "buget2day",
+	    storageBucket: "buget2day.appspot.com",
+	    messagingSenderId: "635839327080"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
+	<!-- Chart JvavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+</body>
+
+</html>

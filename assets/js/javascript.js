@@ -7,6 +7,24 @@ var elementfood = $('#elementfood');
 var elementwares = $('#elementwares');
 var elementanother = $('#elementanother');
 
+var tableDateBugetNice = $('#tableDateBugetNice');
+var elementtotalFoodNice = $('#elementtotalFoodNice');
+var elementtotalWaresNice = $('#elementtotalWaresNice');
+var elementtotalAnotherNice = $('#elementtotalAnotherNice');
+var elementtotalNice = $('#elementtotalNice');
+var elementlistFoodNice = $('#elementlistFoodNice');
+var elementlistWaresNice = $('#elementlistWaresNice');
+var elementlistAnotherNice = $('#elementlistAnotherNice');
+
+var tableDateBugetMook = $('#tableDateBugetMook');
+var elementtotalFoodMook = $('#elementtotalFoodMook');
+var elementtotalWaresMook = $('#elementtotalWaresMook');
+var elementtotalAnotherMook = $('#elementtotalAnotherMook');
+var elementtotalMook = $('#elementtotalMook');
+var elementlistFoodMook = $('#elementlistFoodMook');
+var elementlistWaresMook = $('#elementlistWaresMook');
+var elementlistAnotherMook = $('#elementlistAnotherMook');
+
 // when website on loading will query database at firebase
 window.onload = function() {
   // Get datebase of Bugget
@@ -14,6 +32,12 @@ window.onload = function() {
 
   // Get database of Infomation
   getDataInfomation();
+
+  // Get database of Buget's nice
+  getDataBugetNice();
+
+  // Get database of Buget's mook
+  getDataBugetMook();
 
   // Show chart/
   showChart();
@@ -87,6 +111,7 @@ function getDataBuget(){
       var orderId = allValue.orderId;
       var price = allValue.price;
       var whose = allValue.whose;
+      var type = allValue.type;
 
       // log to see what happen when website on loading
       console.log(date, name, orderId, price, whose);
@@ -99,7 +124,7 @@ function getDataBuget(){
       tableDataFood.append("<td>" + price + "</td>");
       tableDataFood.append("<td>" + whose + "</td>");
       tableDataFood.append("</tr>");
-      //////////////////////////////////////
+
     });
   });
 }
@@ -210,11 +235,11 @@ function handleSave(){
     getDataInfomation();
 
     // Send value to another function
-    setBuggetDate(date.value, name.value, orderId, parseInt(price.value), whose);
+    setBuggetDate(date.value, name.value, orderId, parseInt(price.value), whose, type.value);
   })
 }
 
-function setBuggetDate(date, name, orderId, price, whose){
+function setBuggetDate(date, name, orderId, price, whose, type){
   // On Buget
   var dbFoodRef = firebase.database().ref("Buget");
 
@@ -225,6 +250,7 @@ function setBuggetDate(date, name, orderId, price, whose){
     orderId: orderId,
     price: price,
     whose: whose,
+    type: type,
   })
 
   // Affter send date will show data at log again
@@ -346,5 +372,153 @@ function setAnother(price){
       another: another + price,
     })
 
+  });
+}
+
+function getDataBugetNice(){
+  // On Buget
+  var dbBugetRef = firebase.database().ref("Buget").orderByChild('whose').equalTo('@nice');
+
+  var totalFood = 0;
+  var totalWares = 0;
+  var totalAnother = 0;
+  var total = 0;
+
+  var listFood = '';
+  var listWares = '';
+  var listAnother = '';
+
+  dbBugetRef.once('value').then(function(dataSnap){
+    // On Buget --> (key)
+
+    dataSnap.forEach(function(dataChildSnap){
+      // On Buget -> (key) -> Child
+
+      // Get key and value at child node
+      var keyValue = dataChildSnap.key;
+      var allValue = dataChildSnap.val();
+
+      // Extend value object to get infomation
+      var date = allValue.date;
+      var name = allValue.name;
+      var orderId = allValue.orderId;
+      var price = allValue.price;
+      var whose = allValue.whose;
+      var type = allValue.type;
+
+      // Check what type of order
+      if(type == '1') {
+        totalFood = totalFood + price;
+        total = total + price;
+        listFood += name + ', ';
+      }
+      else if (type == '2') {
+        totalWares = totalWares + price;
+        total = total + price;
+        listWares += name + ', ';
+      }
+      else if (type == '3') {
+        totalAnother = totalAnother + price;
+        total = total + price;
+        listAnother += name + ', ';
+      }
+
+      // log to see what happen when website on loading
+      console.log(date, name, orderId, price, whose);
+      console.log(totalFood, totalWares, totalAnother, total);
+
+      // Push data to table
+      tableDateBugetNice.append("<tr>")
+      tableDateBugetNice.append("<th scope='row'>" + orderId + "</th>");
+      tableDateBugetNice.append("<td>" + date + "</td>");
+      tableDateBugetNice.append("<td>" + name + "</td>");
+      tableDateBugetNice.append("<td>" + price + "</td>");
+      tableDateBugetNice.append("<td>" + whose + "</td>");
+      tableDateBugetNice.append("</tr>");
+
+      elementtotalAnotherNice.html(totalAnother);
+      elementtotalFoodNice.html(totalFood);
+      elementtotalWaresNice.html(totalWares);
+      elementtotalNice.html(total);
+
+      elementlistFoodNice.html(listFood);
+      elementlistWaresNice.html(listWares);
+      elementlistAnotherNice.html(listAnother);
+
+    });
+  });
+}
+
+function getDataBugetMook(){
+  // On Buget
+  var dbBugetRef = firebase.database().ref("Buget").orderByChild('whose').equalTo('@mook');
+
+  var totalFood = 0;
+  var totalWares = 0;
+  var totalAnother = 0;
+  var total = 0;
+
+  var listFood = '';
+  var listWares = '';
+  var listAnother = '';
+
+  dbBugetRef.once('value').then(function(dataSnap){
+    // On Buget --> (key)
+
+    dataSnap.forEach(function(dataChildSnap){
+      // On Buget -> (key) -> Child
+
+      // Get key and value at child node
+      var keyValue = dataChildSnap.key;
+      var allValue = dataChildSnap.val();
+
+      // Extend value object to get infomation
+      var date = allValue.date;
+      var name = allValue.name;
+      var orderId = allValue.orderId;
+      var price = allValue.price;
+      var whose = allValue.whose;
+      var type = allValue.type;
+
+      // Check what type of order
+      if(type == '1') {
+        totalFood = totalFood + price;
+        total = total + price;
+        listFood += name + ', ';
+      }
+      else if (type == '2') {
+        totalWares = totalWares + price;
+        total = total + price;
+        listWares += name + ', ';
+      }
+      else if (type == '3') {
+        totalAnother = totalAnother + price;
+        total = total + price;
+        listAnother += name + ', ';
+      }
+
+      // log to see what happen when website on loading
+      console.log(date, name, orderId, price, whose);
+      console.log(totalFood, totalWares, totalAnother, total);
+
+      // Push data to table
+      tableDateBugetMook.append("<tr>")
+      tableDateBugetMook.append("<th scope='row'>" + orderId + "</th>");
+      tableDateBugetMook.append("<td>" + date + "</td>");
+      tableDateBugetMook.append("<td>" + name + "</td>");
+      tableDateBugetMook.append("<td>" + price + "</td>");
+      tableDateBugetMook.append("<td>" + whose + "</td>");
+      tableDateBugetMook.append("</tr>");
+
+      elementtotalAnotherMook.html(totalAnother);
+      elementtotalFoodMook.html(totalFood);
+      elementtotalWaresMook.html(totalWares);
+      elementtotalMook.html(total);
+
+      elementlistFoodMook.html(listFood);
+      elementlistWaresMook.html(listWares);
+      elementlistAnotherMook.html(listAnother);
+
+    });
   });
 }
